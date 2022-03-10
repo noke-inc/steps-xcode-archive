@@ -172,13 +172,13 @@ func (m *Manager) PrepareCodesigning() (*devportalservice.APIKeyConnection, erro
 }
 
 // SelectConnectionCredentials ...
-func SelectConnectionCredentials(authType AuthType, conn *devportalservice.AppleDeveloperConnection, logger log.Logger, inputs Inputs) (appleauth.Credentials, error) {
+func SelectConnectionCredentials(authType AuthType, conn *devportalservice.AppleDeveloperConnection, logger log.Logger, inputs appleauth.Inputs) (appleauth.Credentials, error) {
 	var authSource appleauth.Source
 
 	switch authType {
 	case APIKeyAuth:
 		if(inputs.APIIssuer != "" || inputs.APIKeyPath == ""){
-			authSource = &appleAuth.InputAPIKeySource{}
+			authSource = &appleauth.InputAPIKeySource{}
 		}else{
 			authSource = &appleauth.ConnectionAPIKeySource{}
 		}
