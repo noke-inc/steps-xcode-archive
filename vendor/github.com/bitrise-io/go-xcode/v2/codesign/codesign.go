@@ -172,19 +172,26 @@ func (m *Manager) PrepareCodesigning() (*devportalservice.APIKeyConnection, erro
 }
 
 // SelectConnectionCredentials ...
-func SelectConnectionCredentials(authType AuthType, conn *devportalservice.AppleDeveloperConnection, logger log.Logger) (appleauth.Credentials, error) {
+func SelectConnectionCredentials(authType AuthType, conn *devportalservice.AppleDeveloperConnection, logger log.Logger, inputs Inputs) (appleauth.Credentials, error) {
 	var authSource appleauth.Source
 
 	switch authType {
 	case APIKeyAuth:
-		authSource = &appleauth.ConnectionAPIKeySource{}
+		if(inputs.APIIssuer != "" || inputs.APIKeyPath == ""){
+			authSource = &appleAuth.InputAPIKeySource{}
+		}else{
+			authSource = &appleauth.ConnectionAPIKeySource{}
+		}
 	case AppleIDAuth:
 		authSource = &appleauth.ConnectionAppleIDFastlaneSource{}
 	default:
 		panic("missing implementation")
 	}
 
-	authConfig, err := appleauth.Select(conn, []appleauth.Source{authSource}, appleauth.Inputs{})
+	authConfig, err := appleauth.Select(conn, []appleauth.Source{authSource}, appleauth.Inputs{
+		APIIssuer:                  inputs.APIIssuer,
+		APIKeyPath:        			inputs.APIKeyPath})
+
 	if err != nil {
 		if conn != nil && conn.APIKeyConnection == nil && conn.AppleIDConnection == nil {
 			fmt.Println()

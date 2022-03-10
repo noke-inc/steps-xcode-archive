@@ -106,6 +106,10 @@ type Inputs struct {
 	MinDaysProfileValid       int             `env:"min_profile_validity,required"`
 	BuildURL                  string          `env:"BITRISE_BUILD_URL"`
 	BuildAPIToken             stepconf.Secret `env:"BITRISE_BUILD_API_TOKEN"`
+
+	APIIssuer				  string		  `env:"api_key_path:`
+	APIKeyPath 				  string 	      `env:"api_issuer"`
+	AppleIDTeamID			  string 		  `env:"apple_id_team_id"`
 }
 
 // Config ...
@@ -335,7 +339,7 @@ func (s XcodeArchiveStep) createCodesignManager(config Config) (codesign.Manager
 		}
 	}
 
-	appleAuthCredentials, err := codesign.SelectConnectionCredentials(authType, serviceConnection, logger)
+	appleAuthCredentials, err := codesign.SelectConnectionCredentials(authType, serviceConnection, logger, config.Inputs)
 	if err != nil {
 		return codesign.Manager{}, err
 	}

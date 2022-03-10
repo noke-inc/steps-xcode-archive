@@ -193,6 +193,31 @@ inputs:
     - apple-id
     is_required: true
 
+- api_key_path: ""
+  opts:
+    title: API Key URL
+    summary: Path to local or remote file
+    description: |-
+      Specify the path in an URL format where your API key is stored.
+      For example: `https://URL/TO/AuthKey_[KEY_ID].p8` or `file:///PATH/TO/AuthKey_[KEY_ID].p8`.
+      **NOTE:** The Step will only recognize the API key if the filename includes the  `KEY_ID` value as shown on the examples above.
+      You can upload your key on the **Generic File Storage** tab in the Workflow Editor and set the Environment Variable for the file here.
+      For example: `$BITRISEIO_MYKEY_URL`
+    is_sensitive: true
+
+- api_issuer: ""
+  opts:
+    title: API Key Issuer ID
+    description: |-
+      Issuer ID. Required if **API Key URL** (`api_key_path`) is specified.
+
+- apple_id_team_id: ""
+  opts:
+    category: Apple ID
+    title: Team ID
+    description: |-
+      Defining this is required when Bitrise Apple Developer Connection is set to `apple-id` and the connected account belongs to multiple teams.
+
 - register_test_devices: "no"
   opts:
     category: Automatic code signing

@@ -56,5 +56,8 @@ func Select(conn *devportalservice.AppleDeveloperConnection, authSources []Sourc
 		}
 	}
 
+	
+
+
 	return Credentials{}, &MissingAuthConfigError{}
 }
