@@ -172,7 +172,7 @@ func (m *Manager) PrepareCodesigning() (*devportalservice.APIKeyConnection, erro
 }
 
 // SelectConnectionCredentials ...
-func SelectConnectionCredentials(authType AuthType, conn *devportalservice.AppleDeveloperConnection, logger log.Logger, inputs config.Inputs) (appleauth.Credentials, error) {
+func SelectConnectionCredentials(authType AuthType, conn *devportalservice.AppleDeveloperConnection, logger log.Logger, inputs appleauth.Inputs) (appleauth.Credentials, error) {
 	var authSource appleauth.Source
 
 	switch authType {

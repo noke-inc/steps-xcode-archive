@@ -339,7 +339,13 @@ func (s XcodeArchiveStep) createCodesignManager(config Config) (codesign.Manager
 		}
 	}
 
-	appleAuthCredentials, err := codesign.SelectConnectionCredentials(authType, serviceConnection, logger, config.Inputs)
+	appleauthInputs := appleauth.Inputs{
+		APIIssuer:                  config.APIIssuer,
+		APIKeyPath:        			config.APIKeyPath}
+	}
+
+
+	appleAuthCredentials, err := codesign.SelectConnectionCredentials(authType, serviceConnection, logger, appleauthInputs)
 	if err != nil {
 		return codesign.Manager{}, err
 	}
