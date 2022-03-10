@@ -178,9 +178,9 @@ func SelectConnectionCredentials(authType AuthType, conn *devportalservice.Apple
 	switch authType {
 	case APIKeyAuth:
 		// if(inputs.APIIssuer != "" || inputs.APIKeyPath == ""){
-		// 	authSource = &appleauth.InputAPIKeySource{}
+		authSource = &appleauth.InputAPIKeySource{}
 		// }else{
-		authSource = &appleauth.ConnectionAPIKeySource{}
+		//authSource = &appleauth.ConnectionAPIKeySource{}
 		//}
 	case AppleIDAuth:
 		authSource = &appleauth.ConnectionAppleIDFastlaneSource{}
