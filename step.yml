@@ -1,5 +1,5 @@
 title: Xcode Archive & Export for iOS
-summary: Automatically manages your code signing assets, archives and exports an .ipa in one Step.
+summary: (Noke) Automatically manages your code signing assets, archives and exports an .ipa in one Step.
 description: |-
   The Step archives your Xcode project by running the `xcodebuild archive` command and then exports the archive into an .ipa file with the `xcodebuild -exportArchive` command.
   This .ipa file can be shared, installed on test devices, or uploaded to the App Store Connect.
@@ -53,9 +53,9 @@ description: |-
 
   Under Debugging:
   1. **Verbose logging***: You can set this input to `yes` to produce more informative logs.
-website: https://github.com/bitrise-steplib/steps-xcode-archive
-source_code_url: https://github.com/bitrise-steplib/steps-xcode-archive
-support_url: https://github.com/bitrise-steplib/steps-xcode-archive/issues
+website: https://github.com/noke-inc/steps-xcode-archive
+source_code_url: https://github.com/noke-inc/steps-xcode-archive
+support_url: https://github.com/noke-inc/steps-xcode-archive/issues
 project_type_tags:
 - ios
 - react-native
