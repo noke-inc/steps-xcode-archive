@@ -108,8 +108,8 @@ type Inputs struct {
 	BuildURL                  string          `env:"BITRISE_BUILD_URL"`
 	BuildAPIToken             stepconf.Secret `env:"BITRISE_BUILD_API_TOKEN"`
 
-	APIIssuer     string `env:"api_key_path"`
-	APIKeyPath    string `env:"api_issuer"`
+	APIIssuer     string `env:"api_issuer"`
+	APIKeyPath    string `env:"api_key_path"`
 	AppleIDTeamID string `env:"apple_id_team_id"`
 }
 
