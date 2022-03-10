@@ -177,11 +177,11 @@ func SelectConnectionCredentials(authType AuthType, conn *devportalservice.Apple
 
 	switch authType {
 	case APIKeyAuth:
-		if(inputs.APIIssuer != "" || inputs.APIKeyPath == ""){
-			authSource = &appleauth.InputAPIKeySource{}
-		}else{
-			authSource = &appleauth.ConnectionAPIKeySource{}
-		}
+		// if(inputs.APIIssuer != "" || inputs.APIKeyPath == ""){
+		// 	authSource = &appleauth.InputAPIKeySource{}
+		// }else{
+		authSource = &appleauth.ConnectionAPIKeySource{}
+		//}
 	case AppleIDAuth:
 		authSource = &appleauth.ConnectionAppleIDFastlaneSource{}
 	default:
@@ -189,8 +189,8 @@ func SelectConnectionCredentials(authType AuthType, conn *devportalservice.Apple
 	}
 
 	authConfig, err := appleauth.Select(conn, []appleauth.Source{authSource}, appleauth.Inputs{
-		APIIssuer:                  inputs.APIIssuer,
-		APIKeyPath:        			inputs.APIKeyPath})
+		APIIssuer:  inputs.APIIssuer,
+		APIKeyPath: inputs.APIKeyPath})
 
 	if err != nil {
 		if conn != nil && conn.APIKeyConnection == nil && conn.AppleIDConnection == nil {
@@ -200,7 +200,7 @@ func SelectConnectionCredentials(authType AuthType, conn *devportalservice.Apple
 
 		if errors.Is(err, &appleauth.MissingAuthConfigError{}) {
 			if authType == AppleIDAuth {
-				return appleauth.Credentials{}, fmt.Errorf("Apple ID authentication is selected in Step inputs, but Bitrise Apple Service connection is unset")
+				return appleauth.Credentials{}, fmt.Errorf("apple ID authentication is selected in Step inputs, but Bitrise Apple Service connection is unset")
 			}
 
 			return appleauth.Credentials{}, fmt.Errorf("API key authentication is selected in Step inputs, but Bitrise Apple Service connection is unset")
